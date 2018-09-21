@@ -1,0 +1,60 @@
+{
+  "name": "compression-test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Stiene",
+  "license": "UNLICENSED",
+  "private": true,
+  "eslintIgnore": [
+    "/coverage",
+    "/node_modules"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "max-len": "off",
+      "no-underscore-dangle": "off",
+      "eqeqeq": "warn",
+      "no-restricted-syntax": [
+        "off",
+        "BinaryExpression[operator='in']"
+      ],
+      "no-prototype-builtins": "off",
+      "prefer-destructuring": "off",
+      "no-param-reassign": "warn",
+      "no-await-in-loop": "off",
+      "global-require": "off",
+      "no-console": "off",
+      "no-loop-func": "off",
+      "consistent-return": "warn"
+    }
+  },
+  "dependencies": {
+    "compressjs": "^1.0.3",
+    "get-folder-size": "^2.0.0",
+    "gunzip-maybe": "^1.4.1",
+    "node-zstandard": "^1.2.4",
+    "node-zstd": "github:Stieneee/node-zstd",
+    "pretty-bytes": "^5.1.0",
+    "tar-fs": "^1.16.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-import-resolver-node": "^0.3.2",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
