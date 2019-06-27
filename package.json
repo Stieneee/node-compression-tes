@@ -43,18 +43,19 @@
   },
   "dependencies": {
     "compressjs": "^1.0.3",
-    "get-folder-size": "^2.0.0",
+    "get-folder-size": "^2.0.1",
     "gunzip-maybe": "^1.4.1",
     "node-zstandard": "^1.2.4",
     "node-zstd": "github:Stieneee/node-zstd",
-    "pretty-bytes": "^5.1.0",
-    "tar-fs": "^1.16.3"
+    "pretty-bytes": "^5.2.0",
+    "simple-zstd": "^1.0.1",
+    "tar-fs": "^2.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^9.0.0",
-    "eslint": "^5.4.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-import-resolver-node": "^0.3.2",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.18.0"
   }
 }
