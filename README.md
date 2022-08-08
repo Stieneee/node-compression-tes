@@ -4,65 +4,57 @@ A test of various compressions algorithms and packages in node.
 
 ## Why
 
-After experimenting with different zstd pacakges I wanted to compare their performance of taring and comrpessing a folder.
+After experimenting with different zstd packages I wanted to compare their performance of taring and compressing a folder.
+
+## Packages
+
+### GZIP
+
+- zlib - https://nodejs.org/api/zlib.html
+
+### Brotli
+
+- zlib - https://nodejs.org/api/zlib.html
+
+### ZSTD
+
+- simple-zstd - https://www.npmjs.com/package/simple-zstd
+- https://www.npmjs.com/package/node-zstandard 
+- @xingrz/cppzst - https://www.npmjs.com/package/@xingrz/cppzst (Appears to be the newest of cppzst heritage)
+
+#### No Stream Interface
+
+These packages did not offer a nodejs stream interface.
+
+- https://www.npmjs.com/package/zstd.ts
+- https://www.npmjs.com/package/@oneidentity/zstd-js
+- https://www.npmjs.com/package/@mongodb-js/zstd
+
+#### Uninstalled Packages
+
+Several packages that rely on a nodejs binding failed to install.
+
+- zstd - https://www.npmjs.com/package/zstd (FAILED TO INSTALL)
+- node-zstd - https://www.npmjs.com/package/node-zstd (FAILED TO INSTALL)
+- node-zstd - https://www.npmjs.com/package/node-zstd2 (FAILED TO INSTALL)
 
 ## Test
 
 [http://www.mattmahoney.net/dc/textdata.html](http://www.mattmahoney.net/dc/textdata.html) enwiki8 was used.
 
-Ubuntu 18.04
-
-Node v10.16.2
-
-AMD Ryzen 5 1600X Six-Core Processor @ 3.9 GHz (clock speed locked. set by cpufreq-set)
-
-- node-zstandard": "^1.2.4
-- node-zstd": "github:Stieneee/node-zstd
-  - compiled against zst v1.3.4
-- simple-zstd": "^1.0.1
-  - zstd command line interface 64-bits v1.3.3, by Yann Collet
+Ubuntu 20.04
+Node v18.7.0
+AMD Ryzen 5 5600X
 
 ## Results
 
-```
-┌────────────────┬───────┬────────────┬───────────────────────┬──────────────────────┬────────────┬────────────────────┐
-│ Package        │ Level │ Total (ms) │ Compression Time (ms) │ Decompress Time (ms) │ Final Size │  Ratio             │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ GZIP           │ 1     │ 3399       │ 2460                  │ 939                  │ 42.3 MB    │ 2.3642291461721023 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ GZIP           │ -1    │ 7450       │ 6628                  │ 822                  │ 36.5 MB    │ 2.736151338868505  │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ GZIP           │ 9     │ 8833       │ 8070                  │ 763                  │ 36.5 MB    │ 2.741652920353502  │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTANDARD │ 1     │ 1163       │ 859                   │ 304                  │ 35.7 MB    │ 2.8021860415043918 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTD      │ 1     │ 1075       │ 794                   │ 281                  │ 40.9 MB    │ 2.447505207159981  │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ SIMPLE-ZSTD    │ 1     │ 846        │ 489                   │ 357                  │ 40.9 MB    │ 2.447504967558549  │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTANDARD │ 3     │ 1188       │ 837                   │ 351                  │ 35.7 MB    │ 2.8021860415043918 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTD      │ 3     │ 1494       │ 1143                  │ 351                  │ 35.7 MB    │ 2.8021868266971115 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ SIMPLE-ZSTD    │ 3     │ 1076       │ 734                   │ 342                  │ 35.7 MB    │ 2.8021865126199708 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTANDARD │ 9     │ 1137       │ 830                   │ 307                  │ 35.7 MB    │ 2.8021860415043918 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTD      │ 9     │ 5095       │ 4749                  │ 346                  │ 32 MB      │ 3.125813823089122  │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ SIMPLE-ZSTD    │ 9     │ 4159       │ 3798                  │ 361                  │ 32 MB      │ 3.1258134322766966 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTANDARD │ 21    │ 1167       │ 854                   │ 313                  │ 35.7 MB    │ 2.8021860415043918 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ NODE-ZSTD      │ 21    │ 73876      │ 73441                 │ 435                  │ 25.6 MB    │ 3.9100223413435593 │
-├────────────────┼───────┼────────────┼───────────────────────┼──────────────────────┼────────────┼────────────────────┤
-│ SIMPLE-ZSTD    │ 21    │ 44591      │ 44190                 │ 401                  │ 27.7 MB    │ 3.6162965635162734 │
-└────────────────┴───────┴────────────┴───────────────────────┴──────────────────────┴────────────┴────────────────────┘
-```
+![Results 1](./Result1.png)
+
+![Results 2](./Result2.png)
 
 ## Conclusions
 
-- simple-zstd sees at minimum ~20% reduction in total time in comparison to node-zstd.
+- simple-zstd sees at minimum ~20% reduction in total time in comparison to cppzst.
 - simple-zstd time improvement is during compression.
 - node-zstandard is not responding to different level requests.
 
